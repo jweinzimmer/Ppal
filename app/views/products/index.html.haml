@@ -1,0 +1,21 @@
+%h1 Listing products
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+  %tbody
+    - @products.each do |product|
+      %tr
+        %td= product.name
+        %td= number_to_currency(product.price)
+        %td= link_to 'Show', product
+        %td= link_to 'Add to cart', items_path(product_id: product.id), method: :post
+    %tr
+      %td
+        %b= number_to_currency @products.pluck(:price).inject(:+)
+%br
+  = link_to 'New Product', new_product_path
+%br
+  = link_to 'Check Out', cart_path

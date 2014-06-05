@@ -1,0 +1,12 @@
+%h1
+  Cart
+  %ul
+    - @cart.items.each do |i|
+      %li= "#{i.name}, #{number_to_currency i.price}"
+
+-# %b= "Total: #{number_to_currency @cart.items.pluck(:price)}"
+%br
+= link_to 'Products', products_path
+%br
+= link_to 'Pay', @cart.paypal_url(products_url)
+
