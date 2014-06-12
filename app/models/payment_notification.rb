@@ -9,3 +9,4 @@ class PaymentNotification < ActiveRecord::Base
 			cart.update_attributes(:purchased_at, Time.now)
 	end
 end
+end
