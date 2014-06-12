@@ -61,6 +61,7 @@ GEM
     paypal-sdk-rest (0.6.1)
       paypal-sdk-core (~> 0.2.8)
       uuidtools (~> 2.1)
+    pg (0.17.1)
     polyglot (0.3.5)
     pry (0.9.12.6)
       coderay (~> 1.0)
@@ -129,6 +130,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   paypal-sdk-rest
+  pg
   pry
   rails (= 4.0.2)
   sass-rails (~> 4.0.0)

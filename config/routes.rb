@@ -1,4 +1,6 @@
 Paypal::Application.routes.draw do
+  resources :payment_notifications
+
   resources :items, only: [:create, :destroy]
   resources :products
   resource :cart
