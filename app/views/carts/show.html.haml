@@ -8,5 +8,5 @@
 %br
 = link_to 'Products', products_path
 %br
-= link_to 'Pay', @cart.paypal_url(products_url)
+= link_to 'Pay', @cart.paypal_url(products_url, payment_notifications_url)
 
