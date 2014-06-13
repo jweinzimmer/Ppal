@@ -4,8 +4,8 @@ class Cart < ActiveRecord::Base
 
 def paypal_url(return_url, notify_url)
     values = {
-      :business => 'justinsellerz@example.com',
-      :cmd => '_cart',
+      :business => 'justinseller@example.com',
+      :cmd => '_xclick',
       :upload => 1,
       :return => return_url,
       :invoice => id,
@@ -22,3 +22,5 @@ def paypal_url(return_url, notify_url)
     "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
   end
 end
+
+# :cmd => '_cart', needs to change!!!!!!!!!!!!
