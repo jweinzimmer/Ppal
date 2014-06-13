@@ -2,8 +2,23 @@ class PaymentNotificationsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:create]
   
   def create
-    PaymentNotification.create!(:params => params, :cart_id => params[:invoice], :status => params[:payment_status], :transaction_id => params[:txn_id])
+  	 
+  	 @payment = PaymentNotification.new()
+     @payment.save!
+     @cart = Cart.last
+     @payment.update_attributes(:params => params, :cart_id => @cart.id, :status => params[:payment_status], :transaction_id => params[:txn_id])
+		 session[:cart_id] = @payment.cart.id
+
+   	if @payment.status == "Completed"
+			@payment.cart.update_attribute(:purchased_at, Time.now)
+		end
+		if session[:cart_id]
+	    @current_cart ||= Cart.find(session[:cart_id])
+	    session[:cart_id] = nil if @current_cart.purchased_at
+  	end
+  	session[:cart_id]
     render :nothing => true
+
   end
 private
   def payment_params

@@ -8,12 +8,13 @@ def current_cart
     @cart = Cart.create!
     session[:cart_id] = @cart.id
   end
-  if session[:cart_id]
-    @current_cart ||= Cart.find(session[:cart_id])
+      if session[:cart_id]
+    @current_cart = Cart.find(session[:cart_id])
     session[:cart_id] = nil if @current_cart.purchased_at
-  end
+    end
   if session[:cart_id].nil?
     @current_cart = Cart.create!
+
     session[:cart_id] = @current_cart.id
   end
   @current_cart
