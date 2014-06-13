@@ -2,15 +2,16 @@ class Cart < ActiveRecord::Base
   has_many :products
   has_many :items
 
-def paypal_url(return_url, notify_url)
+def paypal_url(return_url)
     values = {
       :business => 'justinseller@example.com',
-      :cmd => '_xclick',
+      :cmd => '_cart',
       :upload => 1,
       :return => return_url,
-      :invoice => id,
-      :notify_url => notify_url
+      :invoice => 1 + rand(10000)
+      
     }
+    
     items.each_with_index do |item, index|
       values.merge!({
         "amount_#{index+1}" => item.price,
