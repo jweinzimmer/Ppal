@@ -9,7 +9,8 @@ def paypal_url(return_url, notify_url)
       :upload => 1,
       :return => return_url,
       :invoice => 1 + rand(10000),
-      :notify_url => notify_url
+      :notify_url => notify_url,
+      ipn_url: "http://still-beach-6372.herokuapp.com/payment_notifications"
     }
     items.each_with_index do |item, index|
       values.merge!({
@@ -18,9 +19,11 @@ def paypal_url(return_url, notify_url)
         "item_number_#{index+1}" => item.id,
         "quantity_#{index+1}" => 1
       })
+      # binding.pry
     end
     "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
   end
+
 end
 
 # :cmd => '_cart', needs to change!!!!!!!!!!!!
